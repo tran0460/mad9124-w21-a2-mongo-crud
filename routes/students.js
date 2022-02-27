@@ -13,6 +13,18 @@ router.post('/', async (req, res) => {
     await newStudent.save()
     res.status(201).json({data: formatResponseData('people', newStudent.toObject())})
 })
+router.get('/:id', async (req, res) => {
+    try {
+        const student = await Student.findById(req.params.id)
+        if(!student) {
+            throw new Error('Resource not found')
+        }
+    res.json({data: formatResponseData('people', student.toObject())})
+    }
+    catch (error) {
+        sendResourceNotFound(req, res)
+    }
+})
 function formatResponseData(type, resource) {
     const {_id, ...attributes} = resource
     return {type, id: _id, attributes}
