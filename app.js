@@ -15,7 +15,7 @@ const app = express();
 app.use(morgan("tiny"));
 app.use(express.json());
 app.use("/api/courses", require("./routes/courses"));
-app.use("/api/students", require("./routes/students"));
+// app.use("/api/students", require("./routes/students"));
 // ^ Dynamic Import, can only use it when router module is using it in only one place.
 const port = process.env.PORT || 3030;
 app.listen(port, () => console.log(`HTTP server listening on port ${port}...`));
