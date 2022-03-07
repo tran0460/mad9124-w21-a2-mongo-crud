@@ -48,7 +48,7 @@ router.patch('/:id', async (req, res) => {
         sendResourceNotFound(req, res)
     }
 })
-router.put('/:id', async (req, res) => {
+router.put('/:id', sanitizeBody, async (req, res) => {
     try {
         const {_id, ...attributes} = req.body.data.attributes
         const course = await Course.findByIdAndUpdate(
