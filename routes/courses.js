@@ -1,12 +1,14 @@
 const express = require('express')
 const Course = require('../models/Course')
 const router = express.Router()
+const sanitizeBody = require('../middleware/sanitizeBody')
+
 
 router.get('/', async (req, res) => {
     const courses =  await Course.find()
     res.json({data: courses.map(course => formatResponseData('courses', course.toObject()))})
 })
-router.post('/', async (req, res) => {
+router.post('/', sanitizeBody, async (req, res) => {
     let attributes = req.body.data.attributes 
     delete attributes._id 
     let newCourse = new Course(attributes)
