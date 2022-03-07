@@ -7,8 +7,8 @@ router.get('/', async (req, res) => {
     res.json({data: courses.map(course => formatResponseData('courses', course.toObject()))})
 })
 router.post('/', async (req, res) => {
-    let attributes = req.body.data.attributes // body -> data -> attributes
-    delete attributes._id // Delete this if its there, people can do bad bad things >:(
+    let attributes = req.body.data.attributes 
+    delete attributes._id 
     let newCourse = new Course(attributes)
     await newCourse.save()
     res.status(201).json({data: formatResponseData('courses', newCourse.toObject())})
@@ -77,6 +77,8 @@ router.delete('/:id', async (req, res) => {
         sendResourceNotFound(req, res)
     }
 })
+
+
 function formatResponseData(type, resource) {
     const {_id, ...attributes} = resource
     return {type, id: _id, attributes}
@@ -92,4 +94,6 @@ function sendResourceNotFound(req, res) {
         ]
     })
 }
+
 module.exports = router
+

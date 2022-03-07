@@ -8,9 +8,9 @@
   },
   "keywords": [
     "MAD9124",
-    "W21"
+    "W22"
   ],
-  "author": "",
+  "author": "Son Tran",
   "contributors": [
     "Robert McKenney <mckennr@algonquincollege.com>"
   ],
@@ -21,6 +21,7 @@
     "express-mongo-sanitize": "^2.2.0",
     "mongoose": "^6.2.3",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "xss": "^1.0.10"
   }
 }

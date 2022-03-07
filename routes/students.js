@@ -2,6 +2,7 @@ const express = require('express')
 const Student = require('../models/Student')
 const router = express.Router()
 
+
 router.get('/', async (req, res) => {
     const students =  await Student.find()
     res.json({data: students.map(student => formatResponseData('students', student.toObject()))})
@@ -77,6 +78,8 @@ router.delete('/:id', async (req, res) => {
         sendResourceNotFound(req, res)
     }
 })
+
+
 function formatResponseData(type, resource) {
     const {_id, ...attributes} = resource
     return {type, id: _id, attributes}
